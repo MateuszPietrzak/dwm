@@ -3,4 +3,6 @@
 picom &
 nm-applet &
 blueman-applet &
-feh --bg-fill -z $HOME/Downloads/luk.png &
+$HOME/.config/dwm-bar/dwm_bar.sh &
+#feh --bg-fill -z $HOME/Downloads/luk.png &
+nitrogen --restore
