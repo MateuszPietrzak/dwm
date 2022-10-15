@@ -1,7 +1,7 @@
 /* See LICENSE file for copyright and license details. */
 
 /* appearance */
-static const unsigned int borderpx  = 1;        /* border pixel of windows */
+static const unsigned int borderpx  = 3;        /* border pixel of windows */
 static const unsigned int snap      = 32;       /* snap pixel */
 static const unsigned int gappih    = 12;       /* horiz inner gap between windows */
 static const unsigned int gappiv    = 10;       /* vert inner gap between windows */
@@ -40,6 +40,7 @@ static const Rule rules[] = {
 	{ "Gimp",     NULL,       NULL,              0,            1,           -1 },
 	{ NULL,       NULL,       "sxiv",            0,            1,           -1 },
 	{ NULL,       NULL,       "blueman-manager", 0,            1,           -1 },
+	{ NULL,       NULL,       "Volume Control",  0,            1,           -1 },
 };
 
 /* layout(s) */
@@ -54,20 +55,20 @@ static const int lockfullscreen = 1; /* 1 will force focus on the fullscreen win
 static const Layout layouts[] = {
 	/* symbol     arrange function */
 	{ "[]=",      tile },    /* first entry is default */
-//	{ "[M]",      monocle },
-//	{ "[@]",      spiral },
 	{ "[\\]",     dwindle },
-//	{ "H[]",      deck },
 	{ "TTT",      bstack },
-//	{ "===",      bstackhoriz },
-//	{ "HHH",      grid },
 	{ "###",      nrowgrid },
-//	{ "---",      horizgrid },
-//	{ ":::",      gaplessgrid },
 	{ "|M|",      centeredmaster },
-//	{ ">M>",      centeredfloatingmaster },
 	{ "><>",      NULL },    /* no layout function means floating behavior */
 	{ NULL,       NULL },
+//	{ "[M]",      monocle },
+//	{ "[@]",      spiral },
+//	{ "H[]",      deck },
+//	{ "===",      bstackhoriz },
+//	{ "HHH",      grid },
+//	{ "---",      horizgrid },
+//	{ ":::",      gaplessgrid },
+//	{ ">M>",      centeredfloatingmaster },
 };
 
 /* key definitions */
@@ -85,6 +86,9 @@ static const Layout layouts[] = {
 static const char *dmenucmd[] = { "dmenu_run", "-fn", dmenufont, "-nb", col_gray1, "-nf", col_gray3, "-sb", col_cyan, "-sf", col_gray4, "-l", "10",  NULL };
 static const char *nm_dmenucmd[] = { "networkmanager_dmenu", "-fn", dmenufont, "-nb", col_gray1, "-nf", col_gray3, "-sb", col_cyan, "-sf", col_gray4, "-l", "20",  NULL };
 static const char *termcmd[]  = { "kitty", NULL };
+static const char *volupcmd[]  = { "volup.sh", NULL };
+static const char *voldowncmd[]  = { "voldown.sh", NULL };
+static const char *voltogglecmd[]  = { "voltoggle.sh", NULL };
 
 #include "movestack.c"
 static const Key keys[] = {
@@ -92,6 +96,9 @@ static const Key keys[] = {
 	{ MODKEY,                       XK_space,  spawn,          {.v = dmenucmd } },
 	{ MODKEY,                       XK_n,      spawn,          {.v = nm_dmenucmd } },
 	{ MODKEY,                       XK_Return, spawn,          {.v = termcmd } },
+	{ 0,                            0x1008FF13,spawn,          {.v = volupcmd } },
+	{ 0,                            0x1008FF11,spawn,          {.v = voldowncmd } },
+	{ 0,                            0x1008FF12,spawn,          {.v = voltogglecmd } },
 	{ MODKEY,                       XK_b,      togglebar,      {0} },
 	{ MODKEY,                       XK_j,      focusstack,     {.i = +1 } },
 	{ MODKEY,                       XK_k,      focusstack,     {.i = -1 } },
