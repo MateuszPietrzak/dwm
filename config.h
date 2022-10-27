@@ -1,7 +1,7 @@
 /* See LICENSE file for copyright and license details. */
 
 /* appearance */
-static const unsigned int borderpx  = 3;        /* border pixel of windows */
+static const unsigned int borderpx  = 1;        /* border pixel of windows */
 static const unsigned int snap      = 32;       /* snap pixel */
 static const unsigned int gappih    = 12;       /* horiz inner gap between windows */
 static const unsigned int gappiv    = 10;       /* vert inner gap between windows */
@@ -41,6 +41,7 @@ static const Rule rules[] = {
 	{ NULL,       NULL,       "sxiv",            0,            1,           -1 },
 	{ NULL,       NULL,       "blueman-manager", 0,            1,           -1 },
 	{ NULL,       NULL,       "Volume Control",  0,            1,           -1 },
+	{ "Conky",    NULL,       NULL,              0,            1,           -1 },
 };
 
 /* layout(s) */
@@ -89,6 +90,7 @@ static const char *termcmd[]  = { "kitty", NULL };
 static const char *volupcmd[]  = { "volup.sh", NULL };
 static const char *voldowncmd[]  = { "voldown.sh", NULL };
 static const char *voltogglecmd[]  = { "voltoggle.sh", NULL };
+static const char *slockcmd[]  = { "slock", NULL };
 
 #include "movestack.c"
 static const Key keys[] = {
@@ -99,6 +101,7 @@ static const Key keys[] = {
 	{ 0,                            0x1008FF13,spawn,          {.v = volupcmd } },
 	{ 0,                            0x1008FF11,spawn,          {.v = voldowncmd } },
 	{ 0,                            0x1008FF12,spawn,          {.v = voltogglecmd } },
+	{ MODKEY|ShiftMask,             XK_l,      spawn,          {.v = slockcmd } },
 	{ MODKEY,                       XK_b,      togglebar,      {0} },
 	{ MODKEY,                       XK_j,      focusstack,     {.i = +1 } },
 	{ MODKEY,                       XK_k,      focusstack,     {.i = -1 } },

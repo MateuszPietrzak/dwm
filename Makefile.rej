@@ -1,0 +1,15 @@
+--- Makefile
++++ Makefile
+@@ -25,8 +25,11 @@ config.h:
+ dwm: ${OBJ}
+ 	${CC} -o $@ ${OBJ} ${LDFLAGS}
+ 
++dwm-msg: dwm-msg.o
++	${CC} -o $@ $< ${LDFLAGS}
++
+ clean:
+-	rm -f dwm ${OBJ} dwm-${VERSION}.tar.gz
++	rm -f dwm dwm-msg ${OBJ} dwm-${VERSION}.tar.gz
+ 
+ dist: clean
+ 	mkdir -p dwm-${VERSION}
