@@ -8,7 +8,7 @@ picom &
 nm-applet &
 blueman-applet &
 optimus-manager-qt &
-autobar.sh &
+pamixer -m
 xautolock -time 12 -locker "slock" -detectsleep &
-nitrogen --restore
-
+feh --bg-scale --randomize $HOME/Documents/images/wallpapers
+autobar.sh &

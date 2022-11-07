@@ -1,7 +1,7 @@
 /* See LICENSE file for copyright and license details. */
 
 /* appearance */
-static const unsigned int borderpx  = 1;        /* border pixel of windows */
+static const unsigned int borderpx  = 4;        /* border pixel of windows */
 static const unsigned int snap      = 32;       /* snap pixel */
 static const unsigned int gappih    = 12;       /* horiz inner gap between windows */
 static const unsigned int gappiv    = 10;       /* vert inner gap between windows */
@@ -41,6 +41,7 @@ static const Rule rules[] = {
 	{ "Sxiv",            NULL,       NULL,              0,            1,           -1 },
 	{ "jetbrains-clion", NULL,       NULL,              1<<0,         0,           -1 },
 	{ "VSCodium",        NULL,       NULL,              1<<0,         0,           -1 },
+	{ "OpenGL",          NULL,       NULL,              1<<0,         1,           -1 },
 	{ "firefox",         NULL,       NULL,              1<<1,         0,           -1 },
 	{ "discord",         NULL,       NULL,              1<<2,         0,           -1 },
 	{ "Spotify",         "spotify",  "Spotify",         1<<3,         0,           -1 },
@@ -92,23 +93,26 @@ static const Layout layouts[] = {
 #define SHCMD(cmd) { .v = (const char*[]){ "/bin/sh", "-c", cmd, NULL } }
 
 /* commands */
-static const char *dmenucmd[] = { "dmenu_run", "-fn", dmenufont, "-nb", col_gray1, "-nf", col_gray3, "-sb", col_cyan, "-sf", col_gray4, "-c", "-l", "10",  NULL };
-static const char *nm_dmenucmd[] = { "networkmanager_dmenu", "-fn", dmenufont, "-nb", col_gray1, "-nf", col_gray3, "-sb", col_cyan, "-sf", col_gray4, "-l", "20",  NULL };
+static const char *launchercmd[] = { "rofi_launcher",  NULL };
+
 static const char *termcmd[]  = { "kitty", NULL };
 static const char *volupcmd[]  = { "volup.sh", NULL };
 static const char *voldowncmd[]  = { "voldown.sh", NULL };
 static const char *voltogglecmd[]  = { "voltoggle.sh", NULL };
 static const char *slockcmd[]  = { "slock", NULL };
+static const char *screenshotcmd[]  = { "screenshot_now", NULL };
+static const char *calccmd[]  = { "launch_calculator", NULL };
 
 #include "movestack.c"
 static const Key keys[] = {
 	/* modifier                     key        function        argument */
-	{ MODKEY,                       XK_space,  spawn,          {.v = dmenucmd } },
-	{ MODKEY,                       XK_n,      spawn,          {.v = nm_dmenucmd } },
+	{ MODKEY,                       XK_space,  spawn,          {.v = launchercmd } },
 	{ MODKEY,                       XK_Return, spawn,          {.v = termcmd } },
 	{ 0,                            0x1008FF13,spawn,          {.v = volupcmd } },
 	{ 0,                            0x1008FF11,spawn,          {.v = voldowncmd } },
 	{ 0,                            0x1008FF12,spawn,          {.v = voltogglecmd } },
+	{ 0,                            0xFF61,    spawn,          {.v = screenshotcmd } },
+	{ 0,                            0x1008ff1d,spawn,          {.v = calccmd } },
 	{ MODKEY|ShiftMask,             XK_l,      spawn,          {.v = slockcmd } },
 	{ MODKEY,                       XK_b,      togglebar,      {0} },
 	{ MODKEY,                       XK_j,      focusstack,     {.i = +1 } },
